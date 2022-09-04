@@ -3,6 +3,8 @@
 
 int myputs (const char *str)
 {
+    if (str == NULL) return EOF;
+
     int  index = 0;
 
     while (*(str + index) != '\0')
@@ -16,17 +18,20 @@ int myputs (const char *str)
 
 char *mystrchr (const char *str, int ch)
 {
+    if (str == NULL || !isfinite(ch)) return NULL;
     int index = 0;
 
-    while (*(str + index++) != ch)
-        if (ch == '\0') return NULL;
+    while (*(str + index) != ch)
+        if (*(str + index++) == '\0') return NULL;
 
-    return (char*)(str + index - 1);
+    return (char*)(str + index);
 }
 
 
 size_t mystrlen (const char *str)
 {
+    if (str == NULL) return 0;
+
     size_t index = 0;
 
     while (*(str + index++) != '\0');
@@ -37,6 +42,8 @@ size_t mystrlen (const char *str)
 
 char *mystrcpy (char *dest, const char *source)
 {
+    if (dest == NULL || source == NULL) return NULL;
+
     int index = 0;
 
     while (*(source + index) != '\0')
@@ -53,6 +60,8 @@ char *mystrcpy (char *dest, const char *source)
 
 char *mystrncpy (char *dest, const char *source, size_t n)
 {
+    if (dest == NULL || source == NULL || !isfinite(n)) return NULL;
+
     int  index      = 0;
     char end_source = 0;
 
@@ -74,6 +83,8 @@ char *mystrncpy (char *dest, const char *source, size_t n)
 
 char *mystrcat (char *dest, const char *append)
 {
+    if (dest == NULL || append == NULL) return NULL;
+
     int index = 0;
     int phase = 0;
 
@@ -96,6 +107,8 @@ char *mystrcat (char *dest, const char *append)
 
 char *mystrncat (char *dest, const char *append, size_t n)
 {
+    if (dest == NULL || append == NULL || !isfinite(n)) return NULL;
+
     int index = 0;
     int phase = 0;
     char end_append = 0;
@@ -117,4 +130,39 @@ char *mystrncat (char *dest, const char *append, size_t n)
     }
 
     return dest;
+}
+
+char *myfgets (char *str, int n, FILE *fp)
+{
+    if (str == NULL || fp == NULL || !isfinite(n)) return NULL;
+
+    char ch    = 0;
+    int  index = 0;
+
+    ch = fgetc(fp);
+    if (ch == EOF) return NULL;
+
+    for (index = 0; index < n - 1; index++)
+    {
+        *(str + index) = ch;
+
+        if (ch == '\n') break;
+
+        if ((ch = fgetc(fp)) == EOF) break;
+    }
+
+    *(str + index + 1) = '\0';
+
+    return str;
+}
+
+char *mystrdup (const char *str)
+{
+    if (str == NULL) return NULL;
+    
+    char *strd = 0;
+
+    if ((strd = (char*)malloc(mystrlen(str))) == 0) return NULL;
+
+    return mystrcpy(strd, str);
 }

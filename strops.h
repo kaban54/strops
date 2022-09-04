@@ -2,8 +2,9 @@
 #define STROPS_H
 
 #include <stdio.h>
-
-
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
 
 int myputs(const char *str);
 
@@ -19,20 +20,11 @@ char *mystrcat (char *dest, const char *append);
 
 char *mystrncat (char *dest, const char *append, size_t n);
 
+char *myfgets (char *str, int num, FILE *fp);
 
-void myputs_test (const char *str);
+char *mystrdup (const char *str);
 
-void mystrchr_test (const char *str, int ch);
-
-void mystrlen_test (const char *str);
-
-void mystrcpy_test (char *dest, const char *source);
-
-void mystrncpy_test (char *dest, const char *source, size_t n);
-
-void mystrcat_test (char *dest, const char *append);
-
-void mystrncat_test (char *dest, const char *append, size_t n);
+void unittest();
 
 
 #endif
