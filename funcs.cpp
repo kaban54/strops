@@ -136,11 +136,11 @@ char *myfgets (char *str, size_t n, FILE *fp)
 {
     if (str == NULL || fp == NULL || !isfinite(n)) return NULL;
 
-    char ch    = 0;
-    int  index = 0;
+    int ch    = 0;
+    int index = 0;
 
     ch = fgetc(fp);
-    if (ch == EOF) return NULL;
+    if ((ch == EOF) return NULL;
 
     for (index = 0; index < n - 1; index++)
     {
@@ -171,8 +171,8 @@ char *mygetline (char *str, size_t n, char sep)
 {
     if (str == NULL || !isfinite(n)) return NULL;
     
-    char ch    = 0;
-    int  index = 0;
+    int ch    = 0;
+    int index = 0;
 
     ch = fgetc(stdin);
     if (ch == EOF) return NULL;
