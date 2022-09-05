@@ -114,8 +114,8 @@ void unittest()
     fclose(fp);
 
     printf("myfgets test:\n");
-    printf(" gets: %s mygets: %s\n", str1, str2);
-    printf(" gets: %s\tmygets: %s\n", str3, str4);
+    printf(" fgets: %s fmygets: %s", str1, str2);
+    printf(" fgets: %s\tfmygets: %s\n", str3, str4);
 // -------------------------------------------------------------------------------------------------------
 
     printf("\n\n");
@@ -129,7 +129,26 @@ void unittest()
     str5d =   strdup(str5);
     str6d = mystrdup(str6);
 
-    printf("myfgets test:\n");
+    printf("mystrdup test:\n");
     printf(" strdup: %s mystrdup: %s\n", str5d, str6d);
 // -------------------------------------------------------------------------------------------------------
+
+    printf("\n\n");
+/*
+// mygetline test-----------------------------------------------------------------------------------------
+    int  n   = 0;
+    char sep = 0;
+    char str7 [STR_SIZE] = "";
+
+    printf("mygetline test:\n enter n:");
+    scanf("%d", &n);
+    printf("\nenter separator:");
+    scanf("%c", &sep);
+    printf("\ninput:");
+
+    mygetline(str7, n, sep);
+
+    printf("\n%s", str7);
+
 }
+*/

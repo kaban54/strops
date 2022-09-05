@@ -132,7 +132,7 @@ char *mystrncat (char *dest, const char *append, size_t n)
     return dest;
 }
 
-char *myfgets (char *str, int n, FILE *fp)
+char *myfgets (char *str, size_t n, FILE *fp)
 {
     if (str == NULL || fp == NULL || !isfinite(n)) return NULL;
 
@@ -165,4 +165,28 @@ char *mystrdup (const char *str)
     if ((strd = (char*)malloc(mystrlen(str))) == 0) return NULL;
 
     return mystrcpy(strd, str);
+}
+
+char *mygetline (char *str, size_t n, char sep)
+{
+    if (str == NULL || !isfinite(n)) return NULL;
+    
+    char ch    = 0;
+    int  index = 0;
+
+    ch = fgetc(stdin);
+    if (ch == EOF) return NULL;
+
+    for (index = 0; index < n - 1; index++)
+    {
+        *(str + index) = ch;
+
+        if (ch == sep) break;
+
+        if ((ch = fgetc(stdin)) == EOF) break;
+    }
+
+    *(str + index + 1) = '\0';
+
+    return str;
 }

@@ -20,9 +20,11 @@ char *mystrcat (char *dest, const char *append);
 
 char *mystrncat (char *dest, const char *append, size_t n);
 
-char *myfgets (char *str, int num, FILE *fp);
+char *myfgets (char *str, size_t n, FILE *fp);
 
 char *mystrdup (const char *str);
+
+char *mygetline (char *str, size_t n, char sep);
 
 void unittest();
 
