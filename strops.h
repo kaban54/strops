@@ -6,6 +6,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+// string functions --------------------------------------------------------------------------------------
+
 int myputs(const char *str);
 
 char *mystrchr (const char *str, int ch);
@@ -24,9 +26,32 @@ char *myfgets (char *str, size_t n, FILE *fp);
 
 char *mystrdup (const char *str);
 
-char *mygetline (char *str, size_t n, char sep);
+char *mygetline (char *str, char sep, FILE *fp);
+
+// test functions ----------------------------------------------------------------------------------------
 
 void unittest();
 
+void puts_test();
+
+void strlen_test();
+
+void strchr_test();
+
+void strcpy_test();
+
+void strncpy_test();
+
+void strcat_test();
+
+void strncat_test();
+
+void fgets_test();
+
+void strdup_test();
+
+void getline_test();
+
+// -------------------------------------------------------------------------------------------------------
 
 #endif
