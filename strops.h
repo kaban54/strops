@@ -6,6 +6,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+const size_t MAXLEN = 128;
+
 // string functions --------------------------------------------------------------------------------------
 
 int myputs(const char *str);
@@ -26,7 +28,7 @@ char *myfgets (char *str, size_t n, FILE *fp);
 
 char *mystrdup (const char *str);
 
-char *mygetline (char *str, char sep, FILE *fp);
+char *mygetline (FILE *fp);
 
 // test functions ----------------------------------------------------------------------------------------
 

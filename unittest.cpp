@@ -1,6 +1,6 @@
 #include "strops.h"
 
-const int STR_SIZE = 100;
+const int STR_SIZE = 128;
 const char *INPUT_FILE1 =   "fgets_test.txt";
 const char *INPUT_FILE2 = "getline_test.txt";
 
@@ -247,17 +247,15 @@ void strdup_test()
 
 void getline_test()
 {
-    char sep1 = '\n';
-    char sep2 =  ';';
-    char str1 [STR_SIZE] = "";
-    char str2 [STR_SIZE] = "";
-    char str3 [STR_SIZE] = "";
+    char *str1;
+    char *str2;
+    char *str3;
 
     FILE *fp = fopen(INPUT_FILE2, "r");
 
-    mygetline (str1, sep1, fp);
-    mygetline (str2, sep2, fp);
-    mygetline (str3, sep2, fp);
+    str1 = mygetline (fp);
+    str2 = mygetline (fp);
+    str3 = mygetline (fp);
 
     printf ("mygetline test:");
 
@@ -268,13 +266,10 @@ void getline_test()
     printf (strcmp (str2, "test string 2") == 0  ? "OK" : "failed");
 
     printf ("\n test 3:");
-    printf (strcmp (str3, "test string 3") == 0  ? "OK" : "failed");
+    printf (str3 == NULL  ? "OK" : "failed");
 
     printf ("\n test 4:");
-    printf (mygetline (NULL, sep1, fp)   == NULL ? "OK" : "failed");
-
-    printf ("\n test 5:");
-    printf (mygetline (str1, sep1, NULL) == NULL ? "OK" : "failed");
+    printf (mygetline (NULL) == NULL ? "OK" : "failed");
 
     printf("\n");
 

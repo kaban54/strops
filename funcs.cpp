@@ -166,22 +166,44 @@ char *mystrdup (const char *str)
     return mystrcpy(strd, str);
 }
 
-char *mygetline (char *str, char sep, FILE *fp)
+char *mygetline (FILE *fp)
 {
-    if (str == NULL || fp == NULL) return NULL;
+    if (fp == NULL) return NULL;
 
     int ch    = 0;
     int index = 0;
 
+    size_t mem_size = 0;
+
+    char *str  = NULL;
+    char *strc = NULL;
+
     if ((ch = fgetc(fp)) == EOF) return NULL;
 
-    while (ch != sep && ch != '\n' && ch != EOF)
+    mem_size += MAXLEN;
+    if ((str = (char*)malloc(mem_size)) == NULL) return NULL;
+
+    while (ch != '\n' && ch != EOF)
     {
         *(str + index++) = ch;
+
+        if (index >= mem_size - 1)
+        {
+            mem_size += 1;
+            strc = str;
+            if ((str = (char*)realloc(str, mem_size)) == NULL)
+            {
+                str = strc;
+                break;
+            }
+        }
+
         ch = fgetc(fp);
     }
 
     *(str + index) = '\0';
+
+    if (index < mem_size - 1) str = (char*)realloc(str, index + 1);
 
     return str;
 }
